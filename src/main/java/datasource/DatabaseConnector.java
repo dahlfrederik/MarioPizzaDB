@@ -8,6 +8,7 @@ import model.Pizza;
 /**
  *
  * @author FrederikDahl
+ * Lavet ud fra singleton princippet: Derfor er connection statisk. 
  */
 public class DatabaseConnector {
 
@@ -15,43 +16,20 @@ public class DatabaseConnector {
     private static final String URL = "jdbc:mysql://localhost:3306/pizza";
     private static final String USER = "root";
     private static final String PASSWORD = "green8house17";
+    private static Connection con;
 
-    public void connectToAndQueryDatabase() {
-        Connection con = null; 
-        Statement stmt = null; 
-        ResultSet rs = null;
-        try {
-            con = DriverManager.getConnection(
-                    URL,
-                    USER,
-                    PASSWORD);
-            stmt = con.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM pizza.pizzaer");
-
-            while (rs.next()) {
-                int nr = rs.getInt("nr");
-                String type = rs.getString("type");
-                int pris = rs.getInt("pris");
-                Pizza pizza = new Pizza(nr, type, pris); 
-                System.out.println(pizza);
-        } 
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseConnector.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try { 
-                rs.close();
-                con.close();
-                stmt.close(); 
+    public static Connection getConnection() {
+        if (con == null) {
+            try {
+                con = DriverManager.getConnection(
+                        URL,
+                        USER,
+                        PASSWORD);
             } catch (SQLException ex) {
                 Logger.getLogger(DatabaseConnector.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
-        
+        return con;
     }
-    public static void main(String[] args) {
-        new DatabaseConnector().connectToAndQueryDatabase(); 
-        
-    }
+
 }
