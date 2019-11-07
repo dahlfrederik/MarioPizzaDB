@@ -3,6 +3,7 @@ package datasource;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Pizza;
 
 /**
  *
@@ -31,7 +32,8 @@ public class DatabaseConnector {
                 int nr = rs.getInt("nr");
                 String type = rs.getString("type");
                 int pris = rs.getInt("pris");
-                System.out.println("Pizza: " + nr + ", " + type + ", " + pris + " kr");
+                Pizza pizza = new Pizza(nr, type, pris); 
+                System.out.println(pizza);
         } 
 
         } catch (SQLException ex) {
