@@ -21,7 +21,7 @@ public class OrderMapper {
         try {
             Connection con = DatabaseConnector.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.bestillingsliste");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
 
             while (rs.next()) {
                 int tidTilAfhentning = rs.getInt("tidTilAfhentning");

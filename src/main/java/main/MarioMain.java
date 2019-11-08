@@ -9,5 +9,5 @@ package main;
 
 //Initialisere hele programmet 
 public class MarioMain {
-
+    
 }
