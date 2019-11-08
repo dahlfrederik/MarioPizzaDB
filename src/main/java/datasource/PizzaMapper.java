@@ -18,7 +18,7 @@ public class PizzaMapper {
         ArrayList<Pizza> menukort = new ArrayList();
 
         try {
-            Connection con = new DatabaseConnector().getConnection();
+            Connection con = DatabaseConnector.getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzaer");
 

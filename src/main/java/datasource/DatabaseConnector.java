@@ -16,6 +16,10 @@ public class DatabaseConnector {
     private static final String USER = "root";
     private static final String PASSWORD = "green8house17";
     private static Connection con;
+    
+    private DatabaseConnector(){
+        
+    }
 
     public static Connection getConnection() {
         if (con == null) {

@@ -21,7 +21,7 @@ public class OrderMapper {
     public ArrayList<Order> addOrders(){
     OrdreListe orderlist = new OrdreListe(); 
         try {
-            Connection con = new DatabaseConnector().getConnection();
+            Connection con = DatabaseConnector.getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.bestillingsliste");
 
