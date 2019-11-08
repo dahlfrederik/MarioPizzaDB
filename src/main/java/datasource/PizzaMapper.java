@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import model.Pizza;
 
+/**
+ * @author Josef, Thor, Hallur og Frederik 
+ */
+
 public class PizzaMapper {
 
     public ArrayList<Pizza> getMenuKort() {
