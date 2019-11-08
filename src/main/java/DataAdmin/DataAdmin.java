@@ -1,4 +1,4 @@
-package DataAdmin;
+package dataadmin;
 
 import datasource.DatabaseHandler;
 import datasource.FileHandler;
