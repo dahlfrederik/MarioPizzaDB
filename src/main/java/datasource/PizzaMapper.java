@@ -57,10 +57,4 @@ public class PizzaMapper {
         }
         return pizza;
     }
-
-    public static void main(String[] args) {
-        new PizzaMapper().getMenuKort();
-        Pizza pizza = new PizzaMapper().searchSpecificPizza("Gollum");
-        System.out.println(pizza);
-    }
 }

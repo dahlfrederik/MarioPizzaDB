@@ -25,7 +25,7 @@ public class OrderMapper {
 
             while (rs.next()) {
                 int tidTilAfhentning = rs.getInt("tidTilAfhentning");
-                String kundeNavn = rs.getString("kunde");
+                String kundeNavn = rs.getString("navn");
                 int kundeNr = rs.getInt("nr");
                 Kunde kunde = new Kunde(kundeNavn, kundeNr); 
                 Order order = new Order(kunde, tidTilAfhentning); 
