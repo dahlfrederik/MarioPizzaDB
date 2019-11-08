@@ -36,7 +36,7 @@ public class PizzaMapper {
         return menukort;
     }
 
-    public Pizza getSpecificPizza(String pizzaNavn) {
+    public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
         try {
             Connection con = DatabaseConnector.getConnection();
@@ -56,12 +56,11 @@ public class PizzaMapper {
             System.out.println("Fejl, pizza blev ikke fundet");
         }
         return pizza;
-
     }
 
     public static void main(String[] args) {
         new PizzaMapper().getMenuKort();
-        Pizza pizza = new PizzaMapper().getSpecificPizza("Gollum");
+        Pizza pizza = new PizzaMapper().searchSpecificPizza("Gollum");
         System.out.println(pizza);
     }
 }

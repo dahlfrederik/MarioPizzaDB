@@ -1,5 +1,3 @@
-
-
 package datasource;
 
 import java.sql.Connection;
@@ -18,7 +16,7 @@ import model.OrdreListe;
 public class OrderMapper {
     
     //Bestillinger 
-    public ArrayList<Order> addOrders(){
+    public ArrayList<Order> getOrders(){
     OrdreListe orderlist = new OrdreListe(); 
         try {
             Connection con = DatabaseConnector.getConnection();
