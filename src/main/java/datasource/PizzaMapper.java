@@ -13,13 +13,14 @@ import model.Pizza;
  */
 
 public class PizzaMapper {
+     Connection con = DatabaseConnector.getConnection();
+     Statement stmt; 
 
-    public ArrayList<Pizza> getMenuKort() {
+    public ArrayList<Pizza> getPizzas() {
         ArrayList<Pizza> menukort = new ArrayList();
 
         try {
-            Connection con = DatabaseConnector.getConnection();
-            Statement stmt = con.createStatement();
+            stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzaer");
 
             while (rs.next()) {
@@ -57,4 +58,25 @@ public class PizzaMapper {
         }
         return pizza;
     }
+    
+      public void insertPizza(Pizza pizza) {
+        try {
+            String SQL = "INSERT INTO pizzas (name, description, price) VALUES (?, ?, ?)";
+            con = DatabaseConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, pizza.getPizzaNummer());
+            ps.setString(2, pizza.getPizzaNavn());
+            ps.setInt(3, pizza.getPizzaPris());
+            ps.executeUpdate();
+            
+//            ResultSet ids = ps.getGeneratedKeys();
+//            ids.next();
+//            int id = ids.getInt(1);
+//            pizza.setId(id);
+        } catch (SQLException ex) {
+            System.out.println("FEJL! Kunne ikke indsætte pizza");
+        }
+    }
+
+
 }

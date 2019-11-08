@@ -33,10 +33,11 @@ public class FileHandler implements DataSource {
         }
         return pizzas;
     }
-
-    //TODO 
+    
     @Override
     public void insertPizza(Pizza pizza) {
+        //Skal være her grundet interface 
+        //Er her kun for at kunne implementeres senere
     }
 }
 
