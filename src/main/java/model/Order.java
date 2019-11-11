@@ -15,11 +15,17 @@ public class Order {
 
     private Kunde kunde;
     private ArrayList<Pizza> orderliste = new ArrayList<Pizza>();
-    private int tidTilAfhentning;
+    private int tidTilAfhentning, id, nr, tele;
 
     public Order(Kunde kunde, int tidTilAfhentning) {
         this.kunde = kunde;
         this.tidTilAfhentning = tidTilAfhentning;
+    }
+
+    public Order(int id, int nr, int tele) {
+        this.id = id; 
+        this.nr =nr; 
+        this.tele = tele; 
     }
 
     public double getTotalPris() {
@@ -89,9 +95,10 @@ public class Order {
         String totalMenu = "";
         totalMenu += "KVITTERING" + "\n";
         totalMenu += "*****************" + "\n";
-        totalMenu += "Kundens navn: " + kunde.getNavn() + "\n";
-        totalMenu += "Kundens nummer: " + kunde.getNummer() + "\n";
-        totalMenu += "Tid til afhenting: " + getTidTilAfhentning() + " min" + "\n";
+        //totalMenu += "Kundens navn: " + kunde.getNavn() + "\n";
+        //totalMenu += "Kundens nummer: " + kunde.getNummer() + "\n";
+        //totalMenu += "Tid til afhenting: " + getTidTilAfhentning() + " min" + "\n";
+        totalMenu += "OrdreID: " + id ; 
 
         for (Pizza total : orderliste) {
             totalMenu += " Pizza: " + total.getPizzaNavn() + ", pizzaens pris " + total.getPizzaPris() + "\n";

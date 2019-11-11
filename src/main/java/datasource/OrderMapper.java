@@ -1,6 +1,7 @@
 package datasource;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,11 +25,10 @@ public class OrderMapper {
             ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
 
             while (rs.next()) {
-                int tidTilAfhentning = rs.getInt("tidTilAfhentning");
-                String kundeNavn = rs.getString("navn");
-                int kundeNr = rs.getInt("nr");
-                Kunde kunde = new Kunde(kundeNavn, kundeNr); 
-                Order order = new Order(kunde, tidTilAfhentning); 
+                int id = rs.getInt("id");
+                int nr = rs.getInt("nr");
+                int tele = rs.getInt("tele"); 
+                Order order = new Order(id, nr, tele); 
                 orderlist.tilføjOrdrer(order);
             }
             
@@ -37,6 +37,36 @@ public class OrderMapper {
             System.out.println("Fejl, ordre blev ikke tilføjet til listen");
         }
         return orderlist.getOrderListe();
+    }
+    
+    public Order searchSpecificOrdre(int ordreId) {
+        Order order = null;
+        try {
+            Connection con = DatabaseConnector.getConnection();
+            String SQL = "SELECT * FROM pizza.orders WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ordreId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                int nr = rs.getInt("nr");
+                int tele = rs.getInt("tele");
+                order = new Order(id, nr, tele);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Fejl, order blev ikke fundet");
+        }
+        return order;
+    }
+    
+    public static void main(String[] args) {
+        OrderMapper map = new OrderMapper(); 
+        map.getOrders();
+        //Order order = new Order(2, 14, 30366319); 
+        
+       
     }
     
 }
