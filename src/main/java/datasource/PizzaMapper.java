@@ -21,7 +21,7 @@ public class PizzaMapper {
 
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzas");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.pizzas");
 
             while (rs.next()) {
                 int nr = rs.getInt("nr");
@@ -41,7 +41,7 @@ public class PizzaMapper {
         Pizza pizza = null;
         try {
             Connection con = DatabaseConnector.getConnection();
-            String SQL = "SELECT * FROM pizza.pizzaer WHERE type = ?";
+            String SQL = "SELECT * FROM mariopizzaria.pizzaer WHERE type = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, pizzaNavn);
             ResultSet rs = ps.executeQuery();

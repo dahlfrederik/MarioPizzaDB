@@ -16,6 +16,15 @@ public class MenuCard {
         menu.add(pizza);
     }
     
+    public Pizza getPizza(int pizzaNumber) {
+        for (Pizza pizza : menu) {
+            if (pizza.getPizzaNummer()== pizzaNumber) {
+                return pizza;
+            }
+        }
+        return null;
+    }
+    
     public void setMenu(ArrayList<Pizza> menuCard){
         this.menu = menuCard; 
     }

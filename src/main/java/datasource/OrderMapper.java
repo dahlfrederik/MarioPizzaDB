@@ -22,7 +22,7 @@ public class OrderMapper {
         try {
             Connection con = DatabaseConnector.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.orders");
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -43,7 +43,7 @@ public class OrderMapper {
         Order order = null;
         try {
             Connection con = DatabaseConnector.getConnection();
-            String SQL = "SELECT * FROM pizza.orders WHERE id = ?";
+            String SQL = "SELECT * FROM mariopizzaria.orders WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ordreId);
             ResultSet rs = ps.executeQuery();
