@@ -10,7 +10,7 @@ import datasource.DatabaseHandler;
  */
 public class Program {
 
-    private final MenuCard menu = new MenuCard();
+    private final MenuCard menu = new MenuCard().getMenu();
     private final DatabaseHandler databaseHandler;
     private final UI ui;
 

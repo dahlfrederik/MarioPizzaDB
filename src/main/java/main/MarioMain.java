@@ -17,6 +17,7 @@ import model.Program;
 public class MarioMain {
     
     public static void main(String[] args) {
+        
         DataSourceChooser DataChooser = new DataSourceChooser(); 
         DataSource datasource =  DataChooser.getDataSource(DataSources.DATABASE); 
         Program program = new Program(datasource); 

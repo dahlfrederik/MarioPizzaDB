@@ -24,6 +24,7 @@ public class MenuCard {
         return menu; 
     } 
     
+    
     @Override
     public String toString() {
         String totalMenu = "";
