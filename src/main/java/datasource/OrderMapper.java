@@ -22,7 +22,7 @@ public class OrderMapper {
         try {
             Connection con = DatabaseConnector.getConnection();
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.orders");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -61,12 +61,7 @@ public class OrderMapper {
         return order;
     }
     
-    public static void main(String[] args) {
-        OrderMapper map = new OrderMapper(); 
-        map.getOrders();
-        //Order order = new Order(2, 14, 30366319); 
-        
-       
-    }
+    
+    
     
 }

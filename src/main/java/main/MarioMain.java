@@ -4,7 +4,7 @@ import UI.ConsoleUI;
 import dataadmin.DataSources;
 import datasource.DataSource;
 import datasource.DataSourceChooser;
-import datasource.DatabaseHandler;
+import model.OrderHandler;
 import model.Program;
 
 /**
@@ -19,7 +19,7 @@ public class MarioMain {
         ConsoleUI cUI = new ConsoleUI();
         DataSourceChooser DataChooser = new DataSourceChooser(); 
         DataSource datasource =  DataChooser.getDataSource(DataSources.DATABASE); 
-        Program program = new Program(cUI, new DatabaseHandler() ,datasource); 
+        Program program = new Program(cUI,  new OrderHandler() ,datasource); 
         program.runProgram();
 
         

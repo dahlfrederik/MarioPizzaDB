@@ -2,7 +2,6 @@ package model;
 
 import UI.ConsoleUI;
 import datasource.DataSource;
-import datasource.DatabaseHandler;
 import java.util.ArrayList;
 
 /**
@@ -11,13 +10,13 @@ import java.util.ArrayList;
  */
 public class Program {
 
-    private final MenuCard menu = new MenuCard().getMenu();
-    private final DatabaseHandler databaseHandler;
+    private final MenuCard menu = new MenuCard();
+    private final OrderHandler orderHandler;
     private final ConsoleUI ui;
 
-    public Program(ConsoleUI ui, DatabaseHandler databaseHandler, DataSource dataSource) {
+    public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource) {
         this.menu.setMenu(dataSource.getPizzas());
-        this.databaseHandler = databaseHandler;
+        this.orderHandler = orderHandler;
         this.ui = ui;
     }
 
@@ -47,6 +46,8 @@ public class Program {
                         makeOrder();
                         break;
                     case 3: 
+                        showOrders();
+                        
                         break;
                     case 4:
                         break;
@@ -77,6 +78,9 @@ public class Program {
     private void makeOrder() {
         ui.println("---------------------------------Lav Ordre---------------------------------");
         ArrayList<Pizza> pizzas = selectPizzas(); 
+        orderHandler.makeOrder(pizzas); 
+        
+        //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga
     }
     
     public ArrayList<Pizza> selectPizzas() {
@@ -101,6 +105,13 @@ public class Program {
             }
         }
         return chosenPizzas;
+    }
+
+    private void showOrders() {
+        ArrayList<Order> orders = orderHandler.getOrders(); 
+        for (Order order : orders) {
+            ui.println(order.toString()); 
+        }
     }
 
 }

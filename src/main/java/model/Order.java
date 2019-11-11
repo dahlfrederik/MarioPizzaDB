@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class Order {
-
+    
     private Kunde kunde;
     private ArrayList<Pizza> orderliste = new ArrayList<Pizza>();
     private int tidTilAfhentning, id, nr, tele;
@@ -26,6 +26,10 @@ public class Order {
         this.id = id; 
         this.nr =nr; 
         this.tele = tele; 
+    }
+    
+    public Order(ArrayList<Pizza> orderliste){
+        this.orderliste = orderliste; 
     }
 
     public double getTotalPris() {
