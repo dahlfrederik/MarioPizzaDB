@@ -11,12 +11,11 @@ import datasource.DatabaseHandler;
  */
 public class Program {
     private final MenuCard menu = new MenuCard(); 
-    private final DatabaseHandler databaseHandler; 
     
     
-    public Program(DatabaseHandler databaseHandler, DataSource dataSource){
+    public Program(DataSource dataSource){
         this.menu.setMenu(dataSource.getPizzas()); 
-        this.databaseHandler = databaseHandler; 
+        
     }
     
 }
