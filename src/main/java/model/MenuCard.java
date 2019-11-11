@@ -19,13 +19,6 @@ public class MenuCard {
     public void addPizza(Pizza pizza) {
         menu.add(pizza);
     }
-      
-    public Pizza getPizza(){
-        for(Pizza pizza: menu){
-            
-        }
-        return null; 
-    }
     
     public void setMenu(ArrayList<Pizza> menuCard){
         this.menu = menuCard; 
