@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * 
  * @author Josef, Thor, Hallur og Frederik 
  * Lavet ud fra singleton princippet: Derfor er connection statisk. 
  */
