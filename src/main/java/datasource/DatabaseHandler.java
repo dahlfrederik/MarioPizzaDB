@@ -9,7 +9,7 @@ public class DatabaseHandler implements DataSource {
     
     @Override
     public ArrayList<Pizza> getPizzas() {
-        return new PizzaMapper().getPizzas();
+        return new PizzaMapper().getPizzas(); 
     }
 
     @Override
