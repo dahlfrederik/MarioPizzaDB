@@ -37,8 +37,6 @@ public class PizzaMapper {
         return menukort;
     }
     
-    
-
     public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
         try {
@@ -70,11 +68,6 @@ public class PizzaMapper {
             ps.setString(2, pizza.getPizzaNavn());
             ps.setInt(3, pizza.getPizzaPris());
             ps.executeUpdate();
-            
-//            ResultSet ids = ps.getGeneratedKeys();
-//            ids.next();
-//            int id = ids.getInt(1);
-//            pizza.setId(id);
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte pizza");
         }

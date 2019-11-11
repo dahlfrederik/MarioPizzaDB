@@ -18,7 +18,6 @@ public class DataAdmin {
         } else if (type.equals(DataSources.DATABASE)) {
             return new DatabaseHandler();
         }
-
         return null;
     }
 }

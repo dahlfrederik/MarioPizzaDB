@@ -3,8 +3,6 @@
 package model;
 
 import datasource.DataSource;
-import datasource.DatabaseHandler;
-
 /**
  *
  * @author FrederikDahl
