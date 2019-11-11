@@ -21,12 +21,12 @@ public class PizzaMapper {
 
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzaer");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzas");
 
             while (rs.next()) {
                 int nr = rs.getInt("nr");
                 String type = rs.getString("type");
-                int pris = rs.getInt("pris");
+                int pris = rs.getInt("price");
                 Pizza pizza = new Pizza(nr, type, pris);
                 menukort.add(pizza);
             }
@@ -36,6 +36,8 @@ public class PizzaMapper {
         }
         return menukort;
     }
+    
+    
 
     public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
@@ -49,7 +51,7 @@ public class PizzaMapper {
             if (rs.next()) {
                 int nr = rs.getInt("nr");
                 String type = rs.getString("type");
-                int pris = rs.getInt("pris");
+                int pris = rs.getInt("price");
                 pizza = new Pizza(nr, type, pris);
 
             }
