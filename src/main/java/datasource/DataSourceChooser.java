@@ -1,14 +1,15 @@
-package dataadmin;
 
-import datasource.DatabaseHandler;
-import datasource.FileHandler;
-import datasource.DataSource; 
+
+package datasource;
+
+import dataadmin.DataSources;
 
 /**
+ *
  * @author FrederikDahl
  */
-public class DataAdmin {
-        public DataSource getDataSource(DataSources type) {
+public class DataSourceChooser {
+       public DataSource getDataSource(DataSources type) {
         if (type == null) {
             return null;
         }
@@ -18,7 +19,7 @@ public class DataAdmin {
         } else if (type.equals(DataSources.DATABASE)) {
             return new DatabaseHandler();
         }
+
         return null;
     }
 }
-

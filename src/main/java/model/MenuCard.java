@@ -2,10 +2,6 @@
 
 package model;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +14,6 @@ public class MenuCard {
     
     public void addPizza(Pizza pizza) {
         menu.add(pizza);
-    }
-      
-    public Pizza getPizza(){
-        for(Pizza pizza: menu){
-            
-        }
-        return null; 
     }
     
     public void setMenu(ArrayList<Pizza> menuCard){

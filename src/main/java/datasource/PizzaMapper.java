@@ -21,12 +21,12 @@ public class PizzaMapper {
 
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzaer");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzas");
 
             while (rs.next()) {
                 int nr = rs.getInt("nr");
                 String type = rs.getString("type");
-                int pris = rs.getInt("pris");
+                int pris = rs.getInt("price");
                 Pizza pizza = new Pizza(nr, type, pris);
                 menukort.add(pizza);
             }
@@ -36,7 +36,7 @@ public class PizzaMapper {
         }
         return menukort;
     }
-
+    
     public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
         try {
@@ -49,7 +49,7 @@ public class PizzaMapper {
             if (rs.next()) {
                 int nr = rs.getInt("nr");
                 String type = rs.getString("type");
-                int pris = rs.getInt("pris");
+                int pris = rs.getInt("price");
                 pizza = new Pizza(nr, type, pris);
 
             }
@@ -68,11 +68,6 @@ public class PizzaMapper {
             ps.setString(2, pizza.getPizzaNavn());
             ps.setInt(3, pizza.getPizzaPris());
             ps.executeUpdate();
-            
-//            ResultSet ids = ps.getGeneratedKeys();
-//            ids.next();
-//            int id = ids.getInt(1);
-//            pizza.setId(id);
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte pizza");
         }

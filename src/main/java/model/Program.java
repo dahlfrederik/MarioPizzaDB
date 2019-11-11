@@ -3,7 +3,6 @@ package model;
 import UI.UI;
 import datasource.DataSource;
 import datasource.DatabaseHandler;
-
 /**
  *
  * @author FrederikDahl
@@ -54,6 +53,10 @@ public class Program {
         ui.println("--------------------------------Mario's Menukort--------------------------------");
         MenuCard menuCard = new MenuCard();
         menuCard.getMenu();
-    }
+
+    
+
+    
+}
     
 }

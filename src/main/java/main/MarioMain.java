@@ -2,8 +2,9 @@
 
 package main;
 
+import dataadmin.DataSources;
 import datasource.DataSource;
-import datasource.DatabaseHandler;
+import datasource.DataSourceChooser;
 import model.Program;
 
 /**
@@ -15,6 +16,9 @@ import model.Program;
 public class MarioMain {
     
     public static void main(String[] args) {
-      
+        DataSourceChooser DataChooser = new DataSourceChooser(); 
+        DataSource datasource =  DataChooser.getDataSource(DataSources.DATABASE); 
+        Program program = new Program(datasource); 
+        
     }
 }
