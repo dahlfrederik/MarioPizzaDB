@@ -18,7 +18,7 @@ public class MenuCard {
     
     public Pizza getPizza(int pizzaNumber) {
         for (Pizza pizza : menu) {
-            if (pizza.getPizzaNummer()== pizzaNumber) {
+            if (pizza.getPizzaNr() == pizzaNumber) {
                 return pizza;
             }
         }

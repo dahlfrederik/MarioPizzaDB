@@ -13,8 +13,8 @@ import model.Pizza;
  */
 
 public class PizzaMapper {
-     Connection con = DatabaseConnector.getConnection();
-     Statement stmt; 
+     private Connection con = DatabaseConnector.getConnection();
+     private Statement stmt; 
 
     public ArrayList<Pizza> getPizzas() {
         ArrayList<Pizza> menukort = new ArrayList();
@@ -51,7 +51,6 @@ public class PizzaMapper {
                 String type = rs.getString("type");
                 int pris = rs.getInt("price");
                 pizza = new Pizza(nr, type, pris);
-
             }
         } catch (SQLException ex) {
             System.out.println("Fejl, pizza blev ikke fundet");
@@ -64,22 +63,23 @@ public class PizzaMapper {
             String SQL = "INSERT INTO pizzas (nr, type, price) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, pizza.getPizzaNummer());
-            ps.setString(2, pizza.getPizzaNavn());
-            ps.setInt(3, pizza.getPizzaPris());
+            ps.setInt(1, pizza.getPizzaNr());
+            ps.setString(2, pizza.getPizzaName());
+            ps.setInt(3, pizza.getPizzaPrice());
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte pizza");
         }
     }
     
-
-      
     public static void main(String[] args) {
         PizzaMapper pm = new PizzaMapper(); 
-        Pizza pizza = new Pizza(16, "test", 64); 
-        pm.getPizzas();
+        Pizza pizza = new Pizza(17, "test2", 64); 
+        
         pm.insertPizza(pizza); 
+        pm.getPizzas();
     }
+    
+    
 
 }

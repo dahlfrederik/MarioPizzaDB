@@ -16,6 +16,7 @@ public class Program {
     private final ConsoleUI ui;
     private final DataSource datasource; 
     private final OrderMapper orderMapper;
+    private final Customer customer = new Customer(); 
 
     public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource, OrderMapper orderMapper) {
         this.menu.setMenu(dataSource.getPizzas());
@@ -29,11 +30,11 @@ public class Program {
         int choice = 0;
         while (choice != 7) {
             ui.println("--------------------------------Mario's Pizza System--------------------------------");
-            ui.println("1) Se menukort");
-            ui.println("2) Lav ordre");
-            ui.println("3) Se ordre");
-            ui.println("4) Afslut ordre og print kvittering");
-            ui.println("5) Se statistik");
+            ui.println("1) Skriv dit telefonnummer");
+            ui.println("2) Se menukort");
+            ui.println("3) Lav ordre");
+            ui.println("4) Se ordre");
+            ui.println("5) Afslut ordre og print kvittering");
             ui.println("6) Afslut");
 
             try {
@@ -44,16 +45,17 @@ public class Program {
 
                 switch (choice) {
                     case 1:
-                        showMenucard();
+                        makeCustomerInfo(); 
                         break;
                     case 2:
-                        makeOrder();
+                         showMenucard();
                         break;
                     case 3: 
-                        showOrders();
                         
+                        makeOrder();
                         break;
                     case 4:
+                        showOrders();
                         break;
                     case 5:
                         break;
@@ -85,9 +87,6 @@ public class Program {
         orderMapper.insertOrders(order); 
         //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
         //TODO: Skrive til fil 
-        
-        
-        
     }
     
     public ArrayList<Pizza> selectPizzas() {
@@ -120,6 +119,16 @@ public class Program {
         for (Order order : orders) {
             ui.println(order.toString()); 
         }
+        
+        ui.println("Dit opgivede tlf nummer er: " + customer.getTele());
+    }
+
+    private void makeCustomerInfo() {
+        //Navn og nummer
+        int tele = Integer.parseInt(ui.getInput());
+        customer.setTele(tele); 
+        System.out.println("Dit indtastede nummer er: ");
+        System.out.println(customer.getTele());
     }
 
 }

@@ -5,44 +5,42 @@ package model;
  */
 
 public class Pizza {
-    private int pizzaNummer; 
-    private String pizzaNavn; 
-    private int pizzaPris; 
- 
+    private int pizzaNr; 
+    private String pizzaName; 
+    private int pizzaPrice; 
 
-    public Pizza(int pizzaNummer, String pizzaNavn, int pizzaPris) {
-        this.pizzaNummer = pizzaNummer;
-        this.pizzaNavn = pizzaNavn;
-        this.pizzaPris = pizzaPris;
-        
-    }
-    
-    public int getPizzaNummer() {
-        return pizzaNummer;
+    public Pizza(int pizzaNr, String pizzaName, int pizzaPrice) {
+        this.pizzaNr = pizzaNr;
+        this.pizzaName = pizzaName;
+        this.pizzaPrice = pizzaPrice;
     }
 
-    public void setPizzaNummer(int pizzaNummer) {
-        this.pizzaNummer = pizzaNummer;
+    public int getPizzaNr() {
+        return pizzaNr;
     }
 
-    public String getPizzaNavn() {
-        return pizzaNavn;
+    public void setPizzaNr(int pizzaNr) {
+        this.pizzaNr = pizzaNr;
     }
 
-    public void setPizzaNavn(String pizzaNavn) {
-        this.pizzaNavn = pizzaNavn;
+    public String getPizzaName() {
+        return pizzaName;
     }
 
-    public int getPizzaPris() {
-        return pizzaPris;
+    public void setPizzaName(String pizzaName) {
+        this.pizzaName = pizzaName;
     }
 
-    public void setPizzaPris(int pizzaPris) {
-        this.pizzaPris = pizzaPris;
+    public int getPizzaPrice() {
+        return pizzaPrice;
+    }
+
+    public void setPizzaPrice(int pizzaPrice) {
+        this.pizzaPrice = pizzaPrice;
     }
     
     @Override
     public String toString() {
-        return "Nr: "+ pizzaNummer + ", pizza med " + pizzaNavn + ", pris: " + pizzaPris  + " kr" + "\n"; 
+        return "Nr: "+ pizzaNr + ", pizza med " + pizzaName + ", pris: " + pizzaPrice  + " kr" + "\n"; 
     }
 }

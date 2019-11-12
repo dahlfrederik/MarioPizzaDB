@@ -44,6 +44,7 @@ public class FileHandler implements DataSource {
         //Er her kun for at kunne implementeres senere
     }
     
+    //TODO: INDSÆT TING I DEN 
     public void writeOrder(){
         BufferedWriter bw = null;
         try {
@@ -61,6 +62,11 @@ public class FileHandler implements DataSource {
                 System.out.println("BUFFEREDWRITER IKKE LUKKET");
             }
         }
+    }
+    
+    public static void main(String[] args) {
+        FileHandler fh = new FileHandler(); 
+        fh.writeOrder();
     }
  }
 

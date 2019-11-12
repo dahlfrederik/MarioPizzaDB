@@ -13,23 +13,23 @@ import java.io.IOException;
 
 
 
-public class Betaling {
+public class Payment {
     private Order order; 
-    private String betalingsform; 
+    private String paymentType; 
     
-    public Betaling(Order order, boolean kort){
+    public Payment(Order order, boolean card){
         this.order = order; 
-        betalingsForm(kort); 
+        betalingsForm(card); 
     }
     
-    public String betalingsForm(boolean kort){
-        betalingsform = ""; 
-        if(kort == true){
-            return betalingsform += "kort"; 
-        } else return betalingsform += "kontant"; 
+    public String betalingsForm(boolean card){
+        paymentType = ""; 
+        if(card == true){
+            return paymentType += "kort"; 
+        } else return paymentType += "kontant"; 
     }
     
-     public void lavKvittering(){
+     public void createReceipt(){
         BufferedWriter bw = null;
         try { 
             File kvittering = new File("Kvittering.txt");
@@ -51,7 +51,7 @@ public class Betaling {
     
    @Override 
     public String toString(){
-        return order.toString() + " Betalingsform: " + betalingsform; 
+        return order.toString() + " Betalingsform: " + paymentType; 
     }
     
 }
