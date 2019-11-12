@@ -3,8 +3,7 @@ DROP TABLE if exists pizzas;
 create table pizzas (
 	nr		integer not null primary key,
     type	varchar(30),
-    price	integer,
-    UNIQUE KEY type_UNIQUE (type));
+    price	integer);
     
     
 DROP TABLE if exists orders;
