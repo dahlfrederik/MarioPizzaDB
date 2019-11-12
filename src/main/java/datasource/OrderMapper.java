@@ -17,7 +17,6 @@ import model.OrdreListe;
 public class OrderMapper {
     Connection con = DatabaseConnector.getConnection();
     Statement stmt; 
-    Order order; 
     
     //Bestillinger 
     public ArrayList<Order> getOrders(){
@@ -25,7 +24,7 @@ public class OrderMapper {
         try {
             con = DatabaseConnector.getConnection();
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.orders");
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -66,6 +65,7 @@ public class OrderMapper {
     
     public void insertOrders(){
         try {
+            Order order = null; 
             String SQL = "INSERT INTO odetails (pizzaid, orderid, qty) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -74,7 +74,7 @@ public class OrderMapper {
             ps.setInt(3, order.getTele());
             ps.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("FEJL! Kunne ikke indsætte pizza");
+            System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         }
     }
     
