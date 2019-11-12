@@ -22,7 +22,7 @@ public class PizzaMapperTest {
     @Test
     public void testSearchSpecificPizza() {
         Pizza expPizza = new Pizza(14, "Gollum", 25);
-        String exp = expPizza.getPizzaNavn(); 
+        String exp = expPizza.getPizzaName(); 
         Pizza resultPizza = new PizzaMapper().searchSpecificPizza("Gollum");
         String result = "Gollum"; 
         System.out.println(resultPizza);

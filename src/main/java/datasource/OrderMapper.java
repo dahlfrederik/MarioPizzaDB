@@ -76,29 +76,38 @@ public class OrderMapper {
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL2);
  
-            ps.setInt(1, order.getOrderId()); 
+//            ps.setInt(1, order.getOrderId()); 
+//            LocalTime tid = LocalTime.now(); 
+//            Time convTime = java.sql.Time.valueOf(tid);; 
+//            ps.setTime(2,convTime); 
+//            ps.setInt(3, order.getPizzas().get(0).getPizzaNr());
+//            ps.setInt(4, customer.getTele()); 
+//              
+            ps.setInt(1,5); 
             LocalTime tid = LocalTime.now(); 
             Time convTime = java.sql.Time.valueOf(tid);; 
             ps.setTime(2,convTime); 
-            ps.setInt(3, order.getPizzas().get(0).getPizzaNr());
-            ps.setInt(4, customer.getTele()); 
-              
-            ps.executeUpdate();
+            ps.setInt(3,20);     
+            ps.setInt(4,26156319); 
             
-            ps.setInt(1,order.getOrderId()); 
+            
+            
             System.out.println(order + " er tilføjet til Databasen");
-            
+            ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         }
     }   
     
     public static void main(String[] args) {
+                     
         ArrayList<Pizza> pizzas = new ArrayList(); 
-        Customer customer = new Customer("Freddy", 32312312); 
-        Pizza pizza = new Pizza(19,"test5",45); 
+        Pizza pizza = new Pizza(18,"thorc",45);
+        Pizza pizza1 = new Pizza(19, "Josefffff", 60); 
         pizzas.add(pizza); 
-        Order order = new Order(5,pizzas); 
+        pizzas.add(pizza1);
+        Customer customer = new Customer("Hallur", 26156319); 
+        Order order = new Order(10,pizzas); 
         OrderMapper om = new OrderMapper(); 
         
         om.insertOrders(order,customer);

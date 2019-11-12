@@ -74,7 +74,7 @@ public class PizzaMapper {
     
     public static void main(String[] args) {
         PizzaMapper pm = new PizzaMapper(); 
-        Pizza pizza = new Pizza(17, "test2", 64); 
+        Pizza pizza = new Pizza(18, "test3", 64); 
         
         pm.insertPizza(pizza); 
         pm.getPizzas();
