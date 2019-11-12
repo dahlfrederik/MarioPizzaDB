@@ -1,6 +1,7 @@
 DROP TABLE if exists pizzas;
 
 create table pizzas (
+	pid 	integer not null primary key, 
 	nr		integer,
     type	varchar(30),
     price	integer,
@@ -11,7 +12,7 @@ create table pizzas (
 DROP TABLE if exists orders;
     
 create table orders (
-	id		integer NOT NULL AUTO_INCREMENT,
+	oid		integer not null primary key,
     date 	date,
 	nr		integer references pizzas,
     tele	integer,
