@@ -13,7 +13,7 @@ public class OrderHandler {
     
   
     public void makeOrder(ArrayList<Pizza> pizzas) {
-        Order order = new Order(pizzas); 
+        Order order = new Order(1,pizzas); 
         orders.add(order);
     }
 

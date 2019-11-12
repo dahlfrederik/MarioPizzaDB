@@ -83,8 +83,9 @@ public class Program {
         ui.println("---------------------------------Lav Ordre---------------------------------");
         ArrayList<Pizza> pizzas = selectPizzas(); 
         orderHandler.makeOrder(pizzas); 
-        Order order = new Order(pizzas); 
-        orderMapper.insertOrders(order); 
+        //Order order = new Order(pizzas); 
+        //orderMapper.insertOrders(order); 
+        
         //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
         //TODO: Skrive til fil 
     }

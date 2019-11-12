@@ -10,8 +10,9 @@ public class Order {
     private int orderId;  
     private ArrayList<Pizza> pizzas = new ArrayList(); 
 
-    public Order(ArrayList<Pizza> pizzas) {
+    public Order(int orderId, ArrayList<Pizza> pizzas) {
         this.pizzas = pizzas;
+        this.orderId = orderId; 
     }
 
     public ArrayList<Pizza> getPizzas() {
