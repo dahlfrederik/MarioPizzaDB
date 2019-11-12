@@ -16,7 +16,9 @@ public class Program {
     private final ConsoleUI ui;
     private final DataSource datasource; 
     private final OrderMapper orderMapper;
-    private final Customer customer = new Customer(); 
+    private Customer customer = new Customer(); 
+    private Order order; 
+    private String paymentType = ""; 
 
     public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource, OrderMapper orderMapper) {
         this.menu.setMenu(dataSource.getPizzas());
@@ -34,8 +36,8 @@ public class Program {
             ui.println("2) Se menukort");
             ui.println("3) Lav ordre");
             ui.println("4) Se ordre");
-            ui.println("5) Afslut ordre og print kvittering");
-            ui.println("6) Afslut");
+            ui.println("5) Betal ordre og print kvittering");
+            ui.println("6) Print kvittering");
 
             try {
                 choice = Integer.parseInt(ui.getInput());
@@ -51,15 +53,16 @@ public class Program {
                          showMenucard();
                         break;
                     case 3: 
-                        
                         makeOrder();
                         break;
                     case 4:
                         showOrders();
                         break;
                     case 5:
+                        payForOrder(); 
                         break;
                     case 6:
+                        printReceipt();
                         break;
                 }
 
@@ -83,13 +86,13 @@ public class Program {
         ui.println("---------------------------------Lav Ordre---------------------------------");
         ArrayList<Pizza> pizzas = selectPizzas(); 
         orderHandler.makeOrder(pizzas); 
-        //Order order = new Order(pizzas); 
-        //orderMapper.insertOrders(order); 
-        
-        //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
-        //TODO: Skrive til fil 
+        int orderNr = orderMapper.countOrders(); 
+        order = new Order(orderNr, pizzas); 
+        customer = makeCustomerInfo(); 
+        orderMapper.insertOrders(order,customer); 
+        //TODO: Skal skrive til database og kalde metoden makeDatating tam taga 
     }
-    
+      
     public ArrayList<Pizza> selectPizzas() {
         int choice = 0;
         int menuSize = menu.getMenu().size();
@@ -103,7 +106,6 @@ public class Program {
                     if (choice < menuSize + 1 && choice > 0) {
                         Pizza p = menu.getPizza(choice);
                         chosenPizzas.add(p);
-//                        System.out.println("Du har valgt " + chosenPizzas.get(choice));
                     } else {
                         throw new NumberFormatException();
                     }
@@ -124,12 +126,25 @@ public class Program {
         ui.println("Dit opgivede tlf nummer er: " + customer.getTele());
     }
 
-    private void makeCustomerInfo() {
-        //Navn og nummer
+    private Customer makeCustomerInfo() {
+        //nummer
         int tele = Integer.parseInt(ui.getInput());
         customer.setTele(tele); 
-        System.out.println("Dit indtastede nummer er: ");
-        System.out.println(customer.getTele());
+        return customer; 
+    }
+
+    private void payForOrder() {
+        int totalPrice = order.getTotalPrice(); 
+        System.out.println("Samlet pris for dit køb er");
+        System.out.println(totalPrice);
+        System.out.println("Indtast din ønskede betalingsform");
+        paymentType = ui.getInput(); 
+        System.out.println("Du valgte at betale med " + paymentType);
+        System.out.println("Udfør venligst betalingen nu med beløbet " + totalPrice + " kr");
+    }
+    
+    public void printReceipt(){
+        System.out.println(order.toString() + " Betalingsform: " + paymentType);
     }
 
 }

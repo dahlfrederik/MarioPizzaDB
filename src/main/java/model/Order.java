@@ -26,6 +26,14 @@ public class Order {
     public int getOrderId(){
         return orderId; 
     }
+    
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        for (Pizza pizza : pizzas) {
+            totalPrice += pizza.getPizzaPrice();
+        }
+        return totalPrice; 
+    }
 
     @Override
     public String toString() {

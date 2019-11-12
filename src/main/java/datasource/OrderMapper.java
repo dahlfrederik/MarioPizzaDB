@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Customer;
 import model.Order;
 import model.Pizza;
@@ -80,6 +82,7 @@ public class OrderMapper {
             ps.setInt(4, customer.getTele()); 
             ps.executeUpdate(); 
              
+            //TODO: Debugging tool
             System.out.println(order + ": med dataene, orderId " + order.getOrderId() + 
                     " tid: " + convTime + " pizzanr: " + order.getPizzas().get(0).getPizzaNr() + " tele: " + customer.getTele() + 
                     "er tilføjet til Databasen");
@@ -87,6 +90,23 @@ public class OrderMapper {
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         } 
+    }
+    
+    public int countOrders(){
+        int count = 0; 
+        try {
+            String SQL = "SELECT COUNT(*) FROM orders";
+            con = DatabaseConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+                count = rs.getInt(1);
+             }
+        } catch (SQLException ex) {
+            System.out.println("Antal ordre blev ikke talt");
+        }
+        return count; 
+        
     }
 
     public static void main(String[] args)  {
@@ -96,6 +116,7 @@ public class OrderMapper {
         Order order = new Order(7, pizzas);
         OrderMapper om = new OrderMapper();
         om.insertOrders(order, customer);
+        om.countOrders();
     }
 
 }
