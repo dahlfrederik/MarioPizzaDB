@@ -13,11 +13,13 @@ public class Program {
     private final MenuCard menu = new MenuCard();
     private final OrderHandler orderHandler;
     private final ConsoleUI ui;
+    private final DataSource datasource; 
 
     public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource) {
         this.menu.setMenu(dataSource.getPizzas());
         this.orderHandler = orderHandler;
         this.ui = ui;
+        this.datasource = dataSource; 
     }
 
     public void runProgram() {
@@ -80,7 +82,10 @@ public class Program {
         ArrayList<Pizza> pizzas = selectPizzas(); 
         orderHandler.makeOrder(pizzas); 
         
-        //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga
+        //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
+        //TODO: Skrive til fil 
+        datasource.writeOrder(); 
+        
     }
     
     public ArrayList<Pizza> selectPizzas() {

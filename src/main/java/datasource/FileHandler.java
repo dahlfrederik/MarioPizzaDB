@@ -1,9 +1,13 @@
 package datasource;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import model.Order;
 import model.Pizza;
 
 /**
@@ -34,18 +38,32 @@ public class FileHandler implements DataSource {
         return pizzas;
     }
     
-    
-    //TODO: FJERNES 
-    public static void main(String[] args) {
-        FileHandler fh = new FileHandler(); 
-        fh.getPizzas(); 
-    }
-    
     @Override
     public void insertPizza(Pizza pizza) {
         //Skal være her grundet interface 
         //Er her kun for at kunne implementeres senere
     }
-}
+    
+    @Override
+    public void writeOrder(){
+        BufferedWriter bw = null;
+        try {
+            File pizzaliste = new File("Ordreliste.txt");
+            bw = new BufferedWriter(new FileWriter(pizzaliste, true));
+            bw.write(toString());
+            bw.newLine();   
+
+        } catch (IOException ex) {
+            System.out.println("FIL IKKE FUNDET");
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                System.out.println("BUFFEREDWRITER IKKE LUKKET");
+            }
+        }
+    }
+ }
+
 
 

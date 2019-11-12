@@ -15,13 +15,16 @@ import model.OrdreListe;
  */
  
 public class OrderMapper {
+    Connection con = DatabaseConnector.getConnection();
+    Statement stmt; 
+    Order order; 
     
     //Bestillinger 
     public ArrayList<Order> getOrders(){
     OrdreListe orderlist = new OrdreListe(); 
         try {
-            Connection con = DatabaseConnector.getConnection();
-            Statement stmt = con.createStatement();
+            con = DatabaseConnector.getConnection();
+            stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.orders");
 
             while (rs.next()) {
@@ -42,7 +45,7 @@ public class OrderMapper {
     public Order searchSpecificOrdre(int ordreId) {
         Order order = null;
         try {
-            Connection con = DatabaseConnector.getConnection();
+            con = DatabaseConnector.getConnection();
             String SQL = "SELECT * FROM mariopizzaria.orders WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ordreId);
@@ -61,6 +64,19 @@ public class OrderMapper {
         return order;
     }
     
+    public void insertOrders(){
+        try {
+            String SQL = "INSERT INTO odetails (pizzaid, orderid, qty) VALUES (?, ?, ?)";
+            con = DatabaseConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, order.getOrderNr());
+            ps.setInt(2, order.getPizzaNr());
+            ps.setInt(3, order.getTele());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("FEJL! Kunne ikke indsætte pizza");
+        }
+    }
     
     
     

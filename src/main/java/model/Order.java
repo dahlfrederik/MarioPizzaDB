@@ -15,16 +15,16 @@ public class Order {
     
     private Kunde kunde;
     private ArrayList<Pizza> orderliste = new ArrayList<Pizza>();
-    private int tidTilAfhentning, id, nr, tele;
+    private int tidTilAfhentning, orderID, pizzaNr, tele;
 
     public Order(Kunde kunde, int tidTilAfhentning) {
         this.kunde = kunde;
         this.tidTilAfhentning = tidTilAfhentning;
     }
 
-    public Order(int id, int nr, int tele) {
-        this.id = id; 
-        this.nr =nr; 
+    public Order(int OrderID, int pizzaNr, int tele) {
+        this.orderID = OrderID; 
+        this.pizzaNr = pizzaNr; 
         this.tele = tele; 
     }
     
@@ -54,6 +54,18 @@ public class Order {
 
     public ArrayList<Pizza> getOrderListe() {
         return orderliste;
+    }
+    
+     public int getOrderNr() {
+        return orderID; 
+    }
+     
+    public int getPizzaNr(){
+        return pizzaNr; 
+    }
+    
+    public int getTele(){
+            return tele; 
     }
 
     public void skrivOrdrer() {
@@ -102,7 +114,7 @@ public class Order {
         //totalMenu += "Kundens navn: " + kunde.getNavn() + "\n";
         //totalMenu += "Kundens nummer: " + kunde.getNummer() + "\n";
         //totalMenu += "Tid til afhenting: " + getTidTilAfhentning() + " min" + "\n";
-        totalMenu += "OrdreID: " + id ; 
+        totalMenu += "OrdreID: " + orderID ; 
 
         for (Pizza total : orderliste) {
             totalMenu += " Pizza: " + total.getPizzaNavn() + ", pizzaens pris " + total.getPizzaPris() + "\n";
@@ -111,5 +123,7 @@ public class Order {
         totalMenu += "\n Samlet pris: " + getTotalPris() + " kr" + "\n";
         return totalMenu;
     }
+
+   
 
 }
