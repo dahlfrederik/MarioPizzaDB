@@ -21,7 +21,7 @@ public class PizzaMapper {
 
         try {
             stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pizza.pizzas");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.pizzas");
 
             while (rs.next()) {
                 int nr = rs.getInt("nr");

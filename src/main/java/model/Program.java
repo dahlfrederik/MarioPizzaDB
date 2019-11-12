@@ -2,6 +2,7 @@ package model;
 
 import UI.ConsoleUI;
 import datasource.DataSource;
+import datasource.OrderMapper;
 import java.util.ArrayList;
 
 /**
@@ -14,12 +15,14 @@ public class Program {
     private final OrderHandler orderHandler;
     private final ConsoleUI ui;
     private final DataSource datasource; 
+    private final OrderMapper orderMapper;
 
-    public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource) {
+    public Program(ConsoleUI ui, OrderHandler orderHandler, DataSource dataSource, OrderMapper orderMapper) {
         this.menu.setMenu(dataSource.getPizzas());
         this.orderHandler = orderHandler;
         this.ui = ui;
         this.datasource = dataSource; 
+        this.orderMapper = orderMapper;
     }
 
     public void runProgram() {
@@ -84,7 +87,8 @@ public class Program {
         
         //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
         //TODO: Skrive til fil 
-        datasource.writeOrder(); 
+        ArrayList<Order> order = new ArrayList();
+        orderMapper.insertOrders(order);
         
     }
     

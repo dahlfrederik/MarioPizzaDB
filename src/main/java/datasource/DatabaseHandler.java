@@ -19,14 +19,4 @@ public class DatabaseHandler implements DataSource {
     public void insertPizza(Pizza pizza) {
         new PizzaMapper().insertPizza(pizza);
     }
-
-    @Override
-    public void writeOrder() {
-        new OrderMapper().insertOrders(); 
-    }
-    
-    
-
-    
-
 }

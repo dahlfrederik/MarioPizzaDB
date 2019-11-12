@@ -27,7 +27,7 @@ public class OrderMapper {
             ResultSet rs = stmt.executeQuery("SELECT * FROM mariopizzaria.orders");
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("oid");
                 int nr = rs.getInt("nr");
                 int tele = rs.getInt("tele"); 
                 Order order = new Order(id, nr, tele); 
@@ -51,7 +51,7 @@ public class OrderMapper {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("oid");
                 int nr = rs.getInt("nr");
                 int tele = rs.getInt("tele");
                 order = new Order(id, nr, tele);
@@ -63,10 +63,9 @@ public class OrderMapper {
         return order;
     }
     
-    public void insertOrders(){
+    public void insertOrders(Order order){
         try {
-            Order order = null; 
-            String SQL = "INSERT INTO odetails (pizzaid, orderid, qty) VALUES (?, ?, ?)";
+            String SQL = "INSERT INTO odetails (nr, oid, qty) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, order.getOrderNr());

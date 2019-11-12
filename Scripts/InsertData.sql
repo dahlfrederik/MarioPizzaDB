@@ -14,10 +14,5 @@ INSERT INTO pizzas(nr, type, price)  VALUES ('13', 'Mario', '75');
 INSERT INTO pizzas(nr, type, price)  VALUES ('14', 'Gollum', '25');
 INSERT INTO pizzas(nr, type, price)  VALUES ('15', 'Potter', '85');
 
-INSERT INTO orders(date, nr, tele) VALUES('2019:05:21', '8', '22125052');
-INSERT INTO orders(date, nr, tele) VALUES('2019:05:02', '2', '65125312');
-INSERT INTO orders(date, nr, tele) VALUES('2019:06:15', '6', '42124212');
-INSERT INTO orders(date, nr, tele) VALUES('2019:06:26', '11', '82124256');
-INSERT INTO orders(date, nr, tele) VALUES('2019:07:10', '15', '65312421');
-
- 
+insert into orders(oid, date, nr, tele) VALUES('1', '2019:05:19', '5', '95124524');
+insert into odetails(oid, nr, qty) VALUES('1', '5', '3');

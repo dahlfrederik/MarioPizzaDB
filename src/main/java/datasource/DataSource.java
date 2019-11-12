@@ -12,5 +12,4 @@ public interface DataSource {
     
     public ArrayList<Pizza> getPizzas();
     public void insertPizza(Pizza pizza);
-    public void writeOrder(); 
 }
