@@ -89,11 +89,11 @@ public class OrderMapper {
             ps.setTime(2,convTime); 
             ps.setInt(3,20);     
             ps.setInt(4,26156319); 
-            
+            ps.executeUpdate();
             
             
             System.out.println(order + " er tilføjet til Databasen");
-            ps.executeUpdate();
+            
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         }
