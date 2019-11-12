@@ -8,24 +8,26 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
-
 
 public class Order {
     
     private Kunde kunde;
     private ArrayList<Pizza> orderliste = new ArrayList<Pizza>();
-    private int tidTilAfhentning, orderID, pizzaNr, tele;
-
+    private int tidTilAfhentning, orderID, pizzaNr, tele, qty;
+    private LocalTime date; 
+    
     public Order(Kunde kunde, int tidTilAfhentning) {
         this.kunde = kunde;
         this.tidTilAfhentning = tidTilAfhentning;
     }
 
-    public Order(int OrderID, int pizzaNr, int tele) {
+    public Order(int OrderID, int pizzaNr, int tele, LocalTime date) {
         this.orderID = OrderID; 
         this.pizzaNr = pizzaNr; 
         this.tele = tele; 
+        this.date = date; 
     }
     
     public Order(ArrayList<Pizza> orderliste){
@@ -122,6 +124,19 @@ public class Order {
 
         totalMenu += "\n Samlet pris: " + getTotalPris() + " kr" + "\n";
         return totalMenu;
+    }
+
+    public int getQty() {
+       
+        return qty; 
+    }
+    
+    public void setQty(int qty){
+        qty = qty; 
+    }
+
+    public LocalTime getTime() {
+        return date; 
     }
 
    

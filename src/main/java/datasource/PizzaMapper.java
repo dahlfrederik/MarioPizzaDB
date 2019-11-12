@@ -61,7 +61,7 @@ public class PizzaMapper {
     
       public void insertPizza(Pizza pizza) {
         try {
-            String SQL = "INSERT INTO pizzas (name, description, price) VALUES (?, ?, ?)";
+            String SQL = "INSERT INTO pizzas (nr, type, price) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, pizza.getPizzaNummer());
@@ -72,6 +72,14 @@ public class PizzaMapper {
             System.out.println("FEJL! Kunne ikke indsætte pizza");
         }
     }
+    
 
+      
+    public static void main(String[] args) {
+        PizzaMapper pm = new PizzaMapper(); 
+        Pizza pizza = new Pizza(16, "test", 64); 
+        pm.getPizzas();
+        pm.insertPizza(pizza); 
+    }
 
 }

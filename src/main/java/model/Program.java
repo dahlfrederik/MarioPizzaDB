@@ -32,14 +32,13 @@ public class Program {
             ui.println("1) Se menukort");
             ui.println("2) Lav ordre");
             ui.println("3) Se ordre");
-            ui.println("4) Afslut ordre");
+            ui.println("4) Afslut ordre og print kvittering");
             ui.println("5) Se statistik");
-            ui.println("6) Print kvittering");
-            ui.println("7) Afslut");
+            ui.println("6) Afslut");
 
             try {
                 choice = Integer.parseInt(ui.getInput());
-                if (choice < 1 || choice > 7) {
+                if (choice < 1 || choice > 6) {
                     throw new NumberFormatException();
                 }
 
@@ -58,9 +57,7 @@ public class Program {
                         break;
                     case 5:
                         break;
-                    case 6: 
-                        break;
-                    case 7:
+                    case 6:
                         break;
                 }
 
@@ -84,11 +81,12 @@ public class Program {
         ui.println("---------------------------------Lav Ordre---------------------------------");
         ArrayList<Pizza> pizzas = selectPizzas(); 
         orderHandler.makeOrder(pizzas); 
-        
+        Order order = new Order(pizzas); 
+        orderMapper.insertOrders(order); 
         //TODO: Skal skrvie til database og kalde metoden makeDatating tam taga 
         //TODO: Skrive til fil 
-        ArrayList<Order> order = new ArrayList();
-        orderMapper.insertOrders(order);
+        
+        
         
     }
     
@@ -105,6 +103,7 @@ public class Program {
                     if (choice < menuSize + 1 && choice > 0) {
                         Pizza p = menu.getPizza(choice);
                         chosenPizzas.add(p);
+//                        System.out.println("Du har valgt " + chosenPizzas.get(choice));
                     } else {
                         throw new NumberFormatException();
                     }

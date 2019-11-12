@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import model.Kunde;
 import model.Order;
@@ -30,7 +32,9 @@ public class OrderMapper {
                 int id = rs.getInt("oid");
                 int nr = rs.getInt("nr");
                 int tele = rs.getInt("tele"); 
-                Order order = new Order(id, nr, tele); 
+                Time time = rs.getTime("date"); 
+                LocalTime convTime = time.toLocalTime(); 
+                Order order = new Order(id, nr, tele, convTime); 
                 orderlist.tilføjOrdrer(order);
             }
             
@@ -54,7 +58,9 @@ public class OrderMapper {
                 int id = rs.getInt("oid");
                 int nr = rs.getInt("nr");
                 int tele = rs.getInt("tele");
-                order = new Order(id, nr, tele);
+                Time time = rs.getTime("date"); 
+                LocalTime convTime = time.toLocalTime(); 
+                order = new Order(id, nr, tele, convTime);
 
             }
         } catch (SQLException ex) {
@@ -65,18 +71,34 @@ public class OrderMapper {
     
     public void insertOrders(Order order){
         try {
-            String SQL = "INSERT INTO odetails (nr, oid, qty) VALUES (?, ?, ?)";
+            //String SQL = "INSERT INTO odetails (oid, nr, qty) VALUES (?, ?, ?)";
+           String SQL2 = "INSERT INTO orders (oid, date, nr, tele) VALUES (?,?,?,?)"; 
             con = DatabaseConnector.getConnection();
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, order.getOrderNr());
-            ps.setInt(2, order.getPizzaNr());
-            ps.setInt(3, order.getTele());
+            PreparedStatement ps = con.prepareStatement(SQL2);
+//            ps.setInt(1, order.getOrderNr());
+//            ps.setInt(2, order.getPizzaNr());
+//            ps.setInt(3, order.getQty());
+              LocalTime tid = LocalTime.now(); 
+              Time convTime = java.sql.Time.valueOf(tid);; 
+              ps.setInt(1,1);
+              ps.setTime(2,convTime);
+              ps.setInt(3, 2);
+              ps.setInt(4, 5);
+              
             ps.executeUpdate();
+            
+            
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         }
     }
     
+    public static void main(String[] args) {
+        OrderMapper om = new OrderMapper(); 
+        LocalTime tid = LocalTime.now(); 
+        Order order = new Order(3,5,1,tid); 
+        om.insertOrders(order); 
+    }
     
     
 }
