@@ -34,12 +34,19 @@ public class Order {
         }
         return totalPrice; 
     }
+    
+    public int getPizzaQty(){
+        int qty = 0; 
+        for (Pizza pizza : pizzas) {
+            qty = pizza.getQty(); 
+        }
+        return qty; 
+    }
 
     @Override
     public String toString() {
         return "Ordre Nr:   " + orderId
-                /*+ "\nAfhentningstidspunkt:\t" + afhentningsTidspunkt */
-                + "\nOrdre beskrivelse:\n\t" + pizzas;
+                       + "\nOrdre beskrivelse:\n\t" + pizzas + "antal pizzaer: "; 
     }
     
 }

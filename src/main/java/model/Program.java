@@ -85,11 +85,10 @@ public class Program {
         ui.println("---------------------------------Lav Ordre---------------------------------");
         ArrayList<Pizza> pizzas = selectPizzas(); 
         orderHandler.makeOrder(pizzas); 
+        OrderMapper orderMapper = new OrderMapper(); 
         int orderNr = orderMapper.countOrders(); 
         order = new Order(orderNr, pizzas); 
-        customer = makeCustomerInfo(); 
         orderMapper.insertOrders(order,customer); 
-        //TODO: Skal skrive til database og kalde metoden makeDatating tam taga 
     }
       
     public ArrayList<Pizza> selectPizzas() {
@@ -131,6 +130,7 @@ public class Program {
 
     private Customer makeCustomerInfo() {
         //nummer
+        System.out.println("Indtast venligst dit telefonnummer");
         int tele = Integer.parseInt(ui.getInput());
         customer.setTele(tele); 
         return customer; 

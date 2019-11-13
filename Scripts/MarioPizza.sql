@@ -9,9 +9,8 @@ create table pizzas (
 DROP TABLE if exists orders;
     
 create table orders (
-	oid		integer not null primary key,
+	oid		integer not null,
     date 	date,
-	nr		integer references pizzas,
     tele	integer);
      
     

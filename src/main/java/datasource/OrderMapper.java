@@ -53,31 +53,31 @@ public class OrderMapper {
     public void insertOrders(Order order, Customer customer) {
         try {
             //Indsætter i orders 
-            String SQL = "INSERT INTO orders (oid, date, nr, tele) VALUES (?,?,?,?)";
+            String SQL = "INSERT INTO orders (oid, date, tele) VALUES (?,?,?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, order.getOrderId()); 
             LocalDateTime now = LocalDateTime.now();
             Timestamp sqlNow = Timestamp.valueOf(now);
             ps.setTimestamp(2,sqlNow); 
-            ps.setInt(3, order.getPizzas().get(0).getPizzaNr());
-            ps.setInt(4, customer.getTele()); 
+            ps.setInt(3, customer.getTele()); 
             ps.executeUpdate(); 
                       
             //Indsætter i odedetails 
             ArrayList<Pizza> pizzas = pm.getPizzas();
             String SQL2 =  "INSERT INTO odetails (oid, nr, qty) VALUES (?, ?, ?)";
-                for (int i = 0; i < pizzas.size(); i++) {
-                   PreparedStatement ps2 = con.prepareStatement(SQL2); 
+            for (Pizza pizza : pizzas) {
+                PreparedStatement ps2 = con.prepareStatement(SQL2); 
                    ps2.setInt(1,order.getOrderId()); 
-                   ps2.setInt(2,order.getPizzas().get(i).getPizzaNr()); 
-                   ps2.setInt(3,pizzas.get(i).getQty()); 
+                   ps2.setInt(2,pizza.getPizzaNr()); 
+                   ps2.setInt(3,pizza.getQty()); 
                    ps2.executeUpdate(); 
             }
-            
+          
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
-        } 
+        
+        }
     }
 
        
