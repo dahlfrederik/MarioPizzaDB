@@ -1,7 +1,9 @@
 package model;
 
 import UI.ConsoleUI;
+import dataadmin.DataSources;
 import datasource.DataSource;
+import datasource.DataSourceChooser;
 import datasource.OrderMapper;
 import java.util.ArrayList;
 
@@ -152,5 +154,11 @@ public class Program {
         ui.println("---------------------------------Print Kvittering---------------------------------");
         System.out.println(order.toString() + " Betalingsform: " + paymentType);
     }
-
+    
+    public void showStatistics(){
+        ui.println("--------------------------------- Statistik ---------------------------------");
+        System.out.println("Mest populære pizza er pizza nr: " + orderMapper.getMostPopularPizza());
+        
+    }
+    
 }

@@ -36,7 +36,6 @@ public class OrderMapper {
 
             while (rs.next()) {
                 int id = rs.getInt("oid");
-                int nr = rs.getInt("nr");
                 int tele = rs.getInt("tele"); 
                 Time time = rs.getTime("date"); 
                 LocalTime convTime = time.toLocalTime(); 
@@ -86,8 +85,8 @@ public class OrderMapper {
         Customer customer = new Customer("Hejf", 45883023);
         Order order = new Order(6, pizzas);
         OrderMapper om = new OrderMapper();
-        om.insertOrders(order, customer, pizzas);
-        
+        //om.insertOrders(order, customer, pizzas);
+          System.out.println(om.getMostPopularPizza());
     }
     
     public int countOrders(){
@@ -106,7 +105,25 @@ public class OrderMapper {
         return count; 
         
     }
-
-  
-
+    
+    public ArrayList<Integer> getMostPopularPizza(){
+        ArrayList<Integer> mostPopularPizzas = new ArrayList(); 
+        int mostBought = 0; 
+        int qtySum = 0; 
+        try {
+            String SQL = "SELECT nr as mostbought, SUM(qty) AS qtysum FROM odetails GROUP BY nr ORDER BY qtysum DESC LIMIT 5";
+            con = DatabaseConnector.getConnection();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+                mostBought = rs.getInt(1);
+                qtySum = rs.getInt(2); 
+                mostPopularPizzas.add(mostBought);
+             }
+        } catch (SQLException ex) {
+            System.out.println("Den mest populære pizza blev ikke fundet");
+        }
+        return mostPopularPizzas; 
+    }
+ 
 }
