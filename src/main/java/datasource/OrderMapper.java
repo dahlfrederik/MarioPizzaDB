@@ -50,7 +50,7 @@ public class OrderMapper {
         return orderlist; 
     }
   
-    public void insertOrders(Order order, Customer customer) {
+    public void insertOrders(Order order, Customer customer, ArrayList<Pizza> pizzas) {
         try {
             //Indsætter i orders 
             String SQL = "INSERT INTO orders (oid, date, tele) VALUES (?,?,?)";
@@ -64,7 +64,6 @@ public class OrderMapper {
             ps.executeUpdate(); 
                       
             //Indsætter i odedetails 
-            ArrayList<Pizza> pizzas = pm.getPizzas();
             String SQL2 =  "INSERT INTO odetails (oid, nr, qty) VALUES (?, ?, ?)";
             for (Pizza pizza : pizzas) {
                 PreparedStatement ps2 = con.prepareStatement(SQL2); 
@@ -87,7 +86,7 @@ public class OrderMapper {
         Customer customer = new Customer("Hejf", 45883023);
         Order order = new Order(6, pizzas);
         OrderMapper om = new OrderMapper();
-        om.insertOrders(order, customer);
+        om.insertOrders(order, customer, pizzas);
         
     }
     

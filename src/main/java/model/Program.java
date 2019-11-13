@@ -88,12 +88,13 @@ public class Program {
         OrderMapper orderMapper = new OrderMapper(); 
         int orderNr = orderMapper.countOrders(); 
         order = new Order(orderNr, pizzas); 
-        orderMapper.insertOrders(order,customer); 
+        orderMapper.insertOrders(order,customer, pizzas); 
     }
       
     public ArrayList<Pizza> selectPizzas() {
         int choice = 0;
         int menuSize = menu.getMenu().size();
+        int qty = 0; 
         ArrayList<Pizza> chosenPizzas = new ArrayList();
         while (choice != -1) {
             showMenucard();
@@ -103,10 +104,10 @@ public class Program {
                 if (choice != -1) {
                     if (choice < menuSize + 1 && choice > 0) {
                         Pizza p = menu.getPizza(choice);
-                        chosenPizzas.add(p);
                         System.out.println("Indtast den ønskede mængde pizzaer");
-                        int qty = Integer.parseInt(ui.getInput());
+                        qty = Integer.parseInt(ui.getInput());
                         p.setQty(qty);
+                        chosenPizzas.add(p);
                     } else {
                         throw new NumberFormatException();
                     }
