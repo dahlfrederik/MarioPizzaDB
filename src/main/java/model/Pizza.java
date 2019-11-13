@@ -5,14 +5,18 @@ package model;
  */
 
 public class Pizza {
-    private int pizzaNr; 
+    private int pizzaNr, pizzaPrice, qty; 
     private String pizzaName; 
-    private int pizzaPrice; 
 
     public Pizza(int pizzaNr, String pizzaName, int pizzaPrice) {
         this.pizzaNr = pizzaNr;
         this.pizzaName = pizzaName;
         this.pizzaPrice = pizzaPrice;
+    }
+    
+    public Pizza(int pizzaNr, int qty){
+        this.pizzaNr = pizzaNr; 
+        this.qty = qty; 
     }
 
     public int getPizzaNr() {
@@ -39,8 +43,16 @@ public class Pizza {
         this.pizzaPrice = pizzaPrice;
     }
     
+    public void setQty(int qty){
+        this.qty = qty; 
+    }
+    
+    public int getQty(){
+        return qty; 
+    }
+    
     @Override
     public String toString() {
-        return "Nr: "+ pizzaNr + ", pizza med " + pizzaName + ", pris: " + pizzaPrice  + " kr" + "\n"; 
+        return "Nr: "+ pizzaNr + ", pizza med " + pizzaName + ", pris: " + pizzaPrice  + " kr, antal pizzaer: " + qty + "\n"; 
     }
 }

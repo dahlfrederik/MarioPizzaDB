@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ public class OrderMapper {
     private Connection con = DatabaseConnector.getConnection();
     private Statement stmt;
     private Order order; 
+    private PizzaMapper pm = new PizzaMapper(); 
 
     //Bestillinger 
     public ArrayList<Order> getOrders(){
@@ -46,50 +49,46 @@ public class OrderMapper {
         }
         return orderlist; 
     }
-    
-    public Order searchSpecificOrdre(int ordreId) {
-        Order order = null;
-        try {
-            con = DatabaseConnector.getConnection();
-            String SQL = "SELECT * FROM mariopizzaria.orders WHERE id = ?";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1, ordreId);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                int id = rs.getInt("oid");
-                int nr = rs.getInt("nr");
-                int tele = rs.getInt("tele");
-                Time time = rs.getTime("date"); 
-                LocalTime convTime = time.toLocalTime(); 
-          
-            }
-        } catch (SQLException ex) {
-            System.out.println("Fejl, order blev ikke fundet");
-        }
-        return order;
-    }
+  
     public void insertOrders(Order order, Customer customer) {
         try {
+            //Indsætter i orders 
             String SQL = "INSERT INTO orders (oid, date, nr, tele) VALUES (?,?,?,?)";
             con = DatabaseConnector.getConnection();
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, order.getOrderId()); 
-            LocalTime tid = LocalTime.now(); 
-            Time convTime = java.sql.Time.valueOf(tid);; 
-            ps.setTime(2,convTime); 
+            LocalDateTime now = LocalDateTime.now();
+            Timestamp sqlNow = Timestamp.valueOf(now);
+            ps.setTimestamp(2,sqlNow); 
             ps.setInt(3, order.getPizzas().get(0).getPizzaNr());
             ps.setInt(4, customer.getTele()); 
             ps.executeUpdate(); 
-             
-            //TODO: Debugging tool
-            System.out.println(order + ": med dataene, orderId " + order.getOrderId() + 
-                    " tid: " + convTime + " pizzanr: " + order.getPizzas().get(0).getPizzaNr() + " tele: " + customer.getTele() + 
-                    "er tilføjet til Databasen");
-
+                      
+            //Indsætter i odedetails 
+            ArrayList<Pizza> pizzas = pm.getPizzas();
+            String SQL2 =  "INSERT INTO odetails (oid, nr, qty) VALUES (?, ?, ?)";
+                for (int i = 0; i < pizzas.size(); i++) {
+                   PreparedStatement ps2 = con.prepareStatement(SQL2); 
+                   ps2.setInt(1,order.getOrderId()); 
+                   ps2.setInt(2,order.getPizzas().get(i).getPizzaNr()); 
+                   ps2.setInt(3,pizzas.get(i).getQty()); 
+                   ps2.executeUpdate(); 
+            }
+            
         } catch (SQLException ex) {
             System.out.println("FEJL! Kunne ikke indsætte ordre i databasen");
         } 
+    }
+
+       
+      public static void main(String[] args)  {
+        PizzaMapper pm = new PizzaMapper(); 
+        ArrayList<Pizza> pizzas = pm.getPizzas(); 
+        Customer customer = new Customer("Hejf", 45883023);
+        Order order = new Order(6, pizzas);
+        OrderMapper om = new OrderMapper();
+        om.insertOrders(order, customer);
+        
     }
     
     public int countOrders(){
@@ -109,14 +108,6 @@ public class OrderMapper {
         
     }
 
-    public static void main(String[] args)  {
-        PizzaMapper pm = new PizzaMapper(); 
-        ArrayList<Pizza> pizzas = pm.getPizzas(); 
-        Customer customer = new Customer("Thorsc", 45883023);
-        Order order = new Order(7, pizzas);
-        OrderMapper om = new OrderMapper();
-        om.insertOrders(order, customer);
-        om.countOrders();
-    }
+  
 
 }

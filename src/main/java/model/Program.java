@@ -63,7 +63,7 @@ public class Program {
                         break;
                     case 6:
                         printReceipt();
-                        break;
+                        return;
                 }
 
             } catch (NumberFormatException e) {
@@ -79,7 +79,6 @@ public class Program {
             ui.println(pizza + " kr."); 
             
         }
-
     }
 
     private void makeOrder() {
@@ -106,6 +105,9 @@ public class Program {
                     if (choice < menuSize + 1 && choice > 0) {
                         Pizza p = menu.getPizza(choice);
                         chosenPizzas.add(p);
+                        System.out.println("Indtast den ønskede mængde pizzaer");
+                        int qty = Integer.parseInt(ui.getInput());
+                        p.setQty(qty);
                     } else {
                         throw new NumberFormatException();
                     }
@@ -118,6 +120,7 @@ public class Program {
     }
 
     private void showOrders() {
+        ui.println("---------------------------------Vis Ordre---------------------------------");
         ArrayList<Order> orders = orderHandler.getOrders(); 
         for (Order order : orders) {
             ui.println(order.toString()); 
@@ -134,6 +137,7 @@ public class Program {
     }
 
     private void payForOrder() {
+        ui.println("---------------------------------Betal Ordre---------------------------------");
         int totalPrice = order.getTotalPrice(); 
         System.out.println("Samlet pris for dit køb er");
         System.out.println(totalPrice);
@@ -144,6 +148,7 @@ public class Program {
     }
     
     public void printReceipt(){
+        ui.println("---------------------------------Print Kvittering---------------------------------");
         System.out.println(order.toString() + " Betalingsform: " + paymentType);
     }
 
