@@ -3,7 +3,7 @@ package datasource;
 import java.util.ArrayList;
 import model.Pizza;
 /**
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
  */
 public class DatabaseHandler implements DataSource {
 

@@ -48,7 +48,7 @@ public class Order {
     @Override
     public String toString() {
         return "Ordre Nr:   " + orderId
-                       + "\nOrdre beskrivelse:\n\t" + pizzas + "antal pizzaer: "; 
+                       + "\n Ordre beskrivelse:\n\t" + pizzas; 
     }
     
 }

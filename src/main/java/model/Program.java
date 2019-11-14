@@ -36,11 +36,12 @@ public class Program {
             ui.println("3) Lav ordre");
             ui.println("4) Se ordre");
             ui.println("5) Betal ordre og print kvittering");
-            ui.println("6) Print kvittering");
+            ui.println("6) Vis statistik");
+            ui.println("7) Print kvittering");
 
             try {
                 choice = Integer.parseInt(ui.getInput());
-                if (choice < 1 || choice > 6) {
+                if (choice < 1 || choice > 7) {
                     throw new NumberFormatException();
                 }
 
@@ -60,7 +61,10 @@ public class Program {
                     case 5:
                         payForOrder(); 
                         break;
-                    case 6:
+                    case 6: 
+                        showStatistics(); 
+                        break; 
+                    case 7:
                         printReceipt();
                         return;
                 }
@@ -75,7 +79,7 @@ public class Program {
         ui.println("---------------------------------Mario's  Menukort---------------------------------");
         ArrayList<Pizza> menuCard = menu.getMenu();
         for (Pizza pizza : menuCard) {
-            ui.println(pizza + " kr."); 
+            ui.println(pizza.toString()); 
             
         }
     }
@@ -122,14 +126,13 @@ public class Program {
         ui.println("---------------------------------Vis Ordre---------------------------------");
         ArrayList<Order> orders = orderHandler.getOrders(); 
         for (Order order : orders) {
-            ui.println(order.toString()); 
+            ui.println(order.toString() + ", total pris " + order.getTotalPrice() + " kr"); 
         }
         
         ui.println("Dit opgivede tlf nummer er: " + customer.getTele());
     }
 
     private Customer makeCustomerInfo() {
-        //nummer
         System.out.println("Indtast venligst dit telefonnummer");
         int tele = Integer.parseInt(ui.getInput());
         customer.setTele(tele); 
@@ -154,7 +157,7 @@ public class Program {
     
     public void showStatistics(){
         ui.println("--------------------------------- Statistik ---------------------------------");
-        System.out.println("Mest populære pizza er pizza nr: " + orderMapper.getMostPopularPizza());
+        System.out.println("Mest populære pizzaer er nr: " + orderMapper.getMostPopularPizza());
         
     }
     

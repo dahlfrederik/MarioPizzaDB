@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import model.Pizza;
 
 /**
- * @author Josef, Thor, Hallur og Frederik 
+ * @author Josef, Thor, Hallur og Frederik
  */
-
 public class PizzaMapper {
-     private Connection con = DatabaseConnector.getConnection();
-     private Statement stmt; 
+
+    private Connection con = DatabaseConnector.getConnection();
+    private Statement stmt;
 
     //Finder pizza fra menu 
     public ArrayList<Pizza> getPizzas() {
@@ -37,7 +37,7 @@ public class PizzaMapper {
         }
         return menukort;
     }
-    
+
     //Kan finde specifik pizza 
     public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
@@ -59,9 +59,9 @@ public class PizzaMapper {
         }
         return pizza;
     }
-    
+
     //Indsætter pizza til databasen 
-     public void insertPizza(Pizza pizza) {
+    public void insertPizza(Pizza pizza) {
         try {
             String SQL = "INSERT INTO pizzas (nr, type, price) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();

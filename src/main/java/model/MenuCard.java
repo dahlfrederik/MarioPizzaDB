@@ -40,7 +40,7 @@ public class MenuCard {
 
         for (Pizza total : menu) {
             totalMenu += "\n"; 
-            totalMenu += total.toString() + "\n";
+            totalMenu += menu.toString() + "\n";
         }
         return totalMenu;
     }
