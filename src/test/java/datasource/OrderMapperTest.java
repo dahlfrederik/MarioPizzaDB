@@ -57,6 +57,8 @@ public class OrderMapperTest {
     }
 
     @Test
+    
+    // DATABASEN SKAL RYDDES INDEN TEST
     public void testCountOrders() {
         
         //Arrange
