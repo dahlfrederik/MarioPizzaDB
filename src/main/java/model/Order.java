@@ -30,7 +30,9 @@ public class Order {
     public int getTotalPrice(){
         int totalPrice = 0;
         for (Pizza pizza : pizzas) {
-            totalPrice += pizza.getPizzaPrice();
+            
+            totalPrice += pizza.getPizzaPrice() * pizza.getQty();
+            
         }
         return totalPrice; 
     }
