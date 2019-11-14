@@ -85,7 +85,7 @@ public class OrderMapper {
         Customer customer = new Customer("Hejf", 45883023);
         Order order = new Order(6, pizzas);
         OrderMapper om = new OrderMapper();
-        //om.insertOrders(order, customer, pizzas);
+        om.insertOrders(order, customer, pizzas);
           System.out.println(om.getMostPopularPizza());
     }
     
