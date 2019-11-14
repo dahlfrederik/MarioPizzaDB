@@ -5,9 +5,9 @@ package datasource;
 import dataadmin.DataSources;
 
 /**
- *
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
  */
+//Vælger datatype 
 public class DataSourceChooser {
        public DataSource getDataSource(DataSources type) {
         if (type == null) {

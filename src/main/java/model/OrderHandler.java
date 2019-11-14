@@ -3,10 +3,11 @@
 package model;
 
 import java.util.ArrayList;
+
 /**
- *
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
  */
+
 public class OrderHandler {
 
     private final ArrayList<Order> orders = new ArrayList();

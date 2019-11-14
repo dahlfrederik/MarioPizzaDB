@@ -7,12 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import model.Order;
 import model.Pizza;
 
 /**
- *
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
+ * Håndterer fil hvis fil er valgt som datasource 
  */
 public class FileHandler implements DataSource {
      ArrayList<Pizza> pizzas = new ArrayList();
@@ -41,10 +40,11 @@ public class FileHandler implements DataSource {
     @Override
     public void insertPizza(Pizza pizza) {
         //Skal være her grundet interface 
-        //Er her kun for at kunne implementeres senere
     }
     
-    //TODO: INDSÆT TING I DEN 
+    /*
+    Fokus har været på database og derved er denne ikke benyttet i programmets konsol UI.  
+    */
     public void writeOrder(){
         BufferedWriter bw = null;
         try {
@@ -62,11 +62,6 @@ public class FileHandler implements DataSource {
                 System.out.println("BUFFEREDWRITER IKKE LUKKET");
             }
         }
-    }
-    
-    public static void main(String[] args) {
-        FileHandler fh = new FileHandler(); 
-        fh.writeOrder();
     }
  }
 

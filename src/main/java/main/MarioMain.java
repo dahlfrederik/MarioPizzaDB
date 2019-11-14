@@ -9,8 +9,7 @@ import model.OrderHandler;
 import model.Program;
 
 /**
- *
- * @author FrederikDahl
+ * @author Josef, Thor, Hallur og Frederik 
  */
 
 //Initialisere hele programmet 

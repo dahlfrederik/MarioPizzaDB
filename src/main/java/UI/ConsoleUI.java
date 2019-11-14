@@ -1,5 +1,9 @@
 package UI;
 
+/**
+ * @author Frederik, Hallur, Josef og Thor
+ */
+
 import java.util.Scanner;
 
 public class ConsoleUI {

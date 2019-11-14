@@ -1,14 +1,12 @@
 package datasource;
 
 import java.util.ArrayList;
-import model.Order;
 import model.Pizza;
 /**
  * @author FrederikDahl
  */
 public class DatabaseHandler implements DataSource {
 
-    private Order order;
     
     @Override
     public ArrayList<Pizza> getPizzas() {

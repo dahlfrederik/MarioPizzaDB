@@ -5,12 +5,11 @@ package model;
 import java.util.ArrayList;
 
 /**
- *
- * @author FrederikDahl
+ * @author Josef, Thor, Hallur og Frederik 
  */
 public class MenuCard {
     
-    private ArrayList<Pizza> menu = new ArrayList<Pizza>();
+    private ArrayList<Pizza> menu = new ArrayList();
     
     public void addPizza(Pizza pizza) {
         menu.add(pizza);
@@ -32,7 +31,6 @@ public class MenuCard {
     public ArrayList<Pizza> getMenu(){
         return menu; 
     } 
-    
     
     @Override
     public String toString() {

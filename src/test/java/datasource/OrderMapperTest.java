@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package datasource;
 
 import java.util.ArrayList;
 import model.Customer;
 import model.Order;
-import model.OrderHandler;
 import model.Pizza;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- *
- * @author josef
+ * @author Frederik, Hallur, Josef og Thor
  */
 public class OrderMapperTest {
 
@@ -32,9 +25,6 @@ public class OrderMapperTest {
         pm = new PizzaMapper();
     }
 
-    /**
-     * Test of insertOrders method, of class OrderMapper.
-     */
     @Test
     public void testInsertOrders() {
         //Arrange

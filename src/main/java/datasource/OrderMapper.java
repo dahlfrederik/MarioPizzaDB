@@ -10,17 +10,14 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Customer;
 import model.Order;
 import model.Pizza;
 
 /**
- * @author Josef, Thor, Hallur og Frederik
+ * @author Frederik, Hallur, Josef og Thor
  */
 public class OrderMapper {
-
     private Connection con = DatabaseConnector.getConnection();
     private Statement stmt;
     private Order order; 
@@ -48,7 +45,7 @@ public class OrderMapper {
         }
         return orderlist; 
     }
-  
+    //Indsætter ordre 
     public void insertOrders(Order order, Customer customer, ArrayList<Pizza> pizzas) {
         try {
             //Indsætter i orders 
@@ -77,18 +74,7 @@ public class OrderMapper {
         
         }
     }
-
-       
-      public static void main(String[] args)  {
-        PizzaMapper pm = new PizzaMapper(); 
-        ArrayList<Pizza> pizzas = pm.getPizzas(); 
-        Customer customer = new Customer("Hejf", 45883023);
-        Order order = new Order(6, pizzas);
-        OrderMapper om = new OrderMapper();
-        om.insertOrders(order, customer, pizzas);
-          System.out.println(om.getMostPopularPizza());
-    }
-    
+    //Tæller ordrer 
     public int countOrders(){
         int count = 0; 
         try {
@@ -105,7 +91,7 @@ public class OrderMapper {
         return count; 
         
     }
-    
+    //Finder mest populære pizza 
     public ArrayList<Integer> getMostPopularPizza(){
         ArrayList<Integer> mostPopularPizzas = new ArrayList(); 
         int mostBought = 0; 

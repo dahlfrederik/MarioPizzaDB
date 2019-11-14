@@ -1,15 +1,12 @@
 package model;
 
 import UI.ConsoleUI;
-import dataadmin.DataSources;
 import datasource.DataSource;
-import datasource.DataSourceChooser;
 import datasource.OrderMapper;
 import java.util.ArrayList;
 
 /**
- *
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
  */
 public class Program {
 

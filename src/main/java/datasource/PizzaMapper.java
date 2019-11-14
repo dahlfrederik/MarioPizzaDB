@@ -16,6 +16,7 @@ public class PizzaMapper {
      private Connection con = DatabaseConnector.getConnection();
      private Statement stmt; 
 
+    //Finder pizza fra menu 
     public ArrayList<Pizza> getPizzas() {
         ArrayList<Pizza> menukort = new ArrayList();
 
@@ -37,6 +38,7 @@ public class PizzaMapper {
         return menukort;
     }
     
+    //Kan finde specifik pizza 
     public Pizza searchSpecificPizza(String pizzaNavn) {
         Pizza pizza = null;
         try {
@@ -58,7 +60,8 @@ public class PizzaMapper {
         return pizza;
     }
     
-      public void insertPizza(Pizza pizza) {
+    //Indsætter pizza til databasen 
+     public void insertPizza(Pizza pizza) {
         try {
             String SQL = "INSERT INTO pizzas (nr, type, price) VALUES (?, ?, ?)";
             con = DatabaseConnector.getConnection();
@@ -71,15 +74,4 @@ public class PizzaMapper {
             System.out.println("FEJL! Kunne ikke indsætte pizza");
         }
     }
-    
-    public static void main(String[] args) {
-        PizzaMapper pm = new PizzaMapper(); 
-        Pizza pizza = new Pizza(18, "test3", 64); 
-        
-        pm.insertPizza(pizza); 
-        pm.getPizzas();
-    }
-    
-    
-
 }

@@ -5,8 +5,7 @@ import model.Order;
 import model.Pizza;
 
 /**
- *
- * @author FrederikDahl 
+ * @author Frederik, Hallur, Josef og Thor
  */
 public interface DataSource {
     

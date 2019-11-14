@@ -1,8 +1,7 @@
 package dataadmin;
 
 /**
- *
- * @author FrederikDahl
+ * @author Frederik, Hallur, Josef og Thor
  */
 public enum DataSources {
     FILE, DATABASE 
